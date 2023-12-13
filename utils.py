@@ -1,13 +1,17 @@
-def get_prompt(
-    message: str, chat_history: list[tuple[str, str]], system_prompt: str
-) -> str:
-    texts = [f"{system_prompt}\n"]
-    # The first user input is _not_ stripped
-    do_strip = False
-    for user_input, response in chat_history:
-        user_input = user_input.strip() if do_strip else user_input
-        do_strip = True
-        texts.append(f"\n여친: {user_input}\n남친: {response.strip()}")
-    message = message.strip() if do_strip else message
-    texts.append(f"\n여친: {message}\n남친:")
-    return "".join(texts)
+system_prompt = "아래는 연인간의 대화 내용이다."
+
+
+def get_prompt(messages):
+    instrution = system_prompt + "\n"
+    contexts = "여친: " + messages[0]["content"] + "\n"
+
+    for entry in messages[1:]:
+        role = entry["role"]
+        content = entry["content"]
+
+        if role == "user":
+            contexts += "여친: " + content + "\n"
+        elif role == "assistant":
+            contexts += "남친:" + content + "</끝>" + "\n"
+
+    return instrution + contexts + "남친:"
