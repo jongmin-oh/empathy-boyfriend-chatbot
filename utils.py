@@ -2,16 +2,16 @@ system_prompt = "아래는 연인간의 대화 내용이다."
 
 
 def get_prompt(messages):
-    instrution = system_prompt + "\n"
-    contexts = "여친: " + messages[0]["content"] + "\n"
+    instruction = f"{system_prompt}\n"
+    conversation = []
 
-    for entry in messages[1:]:
+    for entry in messages:
         role = entry["role"]
         content = entry["content"]
 
         if role == "user":
-            contexts += "여친: " + content + "\n"
+            conversation.append(f"여친: {content}")
         elif role == "assistant":
-            contexts += "남친:" + content + "</끝>" + "\n"
+            conversation.append(f"남친: {content}</끝>")
 
-    return instrution + contexts + "남친:"
+    return instruction + "\n".join(conversation) + "\n남친:"

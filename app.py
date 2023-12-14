@@ -10,6 +10,11 @@ from model import run
 
 BASE_DIR = Path(__file__).resolve().parent
 
+st.set_page_config(page_title="위로하는 남친 챗봇", page_icon="👦🏻")
+st.header("위로하는 남친 챗봇", anchor="top", divider="rainbow")
+
+st.image(str(BASE_DIR.joinpath("assets", "boyfriend.jpeg")), width=200)
+
 
 def seed_everything(seed):
     torch.manual_seed(seed)  # torch를 거치는 모든 난수들의 생성순서를 고정한다
