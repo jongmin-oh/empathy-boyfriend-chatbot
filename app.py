@@ -29,7 +29,7 @@ for message in st.session_state.messages:
         if message["role"] != "system":
             st.markdown(message["content"])
 
-if prompt := st.chat_input("상담 내용을 입력하세요."):
+if prompt := st.chat_input("남친에게 하고싶은 말을 입력하세요."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)

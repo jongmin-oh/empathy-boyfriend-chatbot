@@ -1,4 +1,3 @@
-import os
 from threading import Thread
 from typing import Iterator
 
@@ -13,9 +12,6 @@ from transformers import (
 )
 
 from utils import get_prompt
-
-os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 model_id = "j5ng/polyglot-ko-empathy-chat-5.8b"
 bnb_config = BitsAndBytesConfig(
@@ -87,6 +83,7 @@ def run(
         temperature=temperature,
         repetition_penalty=repetition_penalty,
         num_beams=1,
+        pad_token_id=tokenizer.pad_token_id,
         stopping_criteria=stopping_criteria,
     )
     t = Thread(target=model.generate, kwargs=generate_kwargs)
