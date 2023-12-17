@@ -48,7 +48,7 @@
 ## 학습
 
 ### Base on Model
- - 기반 모델 : [EleutherAI/polyglot-ko-5.8b](https://huggingface.co/squarelike/polyglot-ko-medical-5.8b))
+ - 기반 모델 : [EleutherAI/polyglot-ko-5.8b](https://huggingface.co/squarelike/polyglot-ko-medical-5.8b)
 
 ```python
 import torch
