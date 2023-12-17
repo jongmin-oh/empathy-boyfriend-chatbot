@@ -69,7 +69,7 @@ model = AutoModelForCausalLM.from_pretrained(model_id, quantization_config=bnb_c
 
 ### 학습 방법
 - 코랩에서 학습 : [Colab](https://drive.google.com/file/d/1fcfEpO8qbs46lQushhopoxl0ExUUOwCf/view?usp=sharing)
-*데이터 셋은 AI 허브의 소유권이 있음으로 Private 처리 되어있습니다.
+  <br> *데이터 셋은 AI 허브의 소유권이 있음으로 Private 입니다.
 
 - Epoch: 5
 - learning-rate: 3e-4
@@ -90,4 +90,3 @@ run.sh
 
 ## Thanks to
 [jwj7140](https://github.com/jwj7140/ko-medical-chat.git) 님의 저장소 도움을 많이(대부분) 받았습니다.
-```
