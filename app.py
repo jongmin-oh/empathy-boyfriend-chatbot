@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 st.set_page_config(page_title="위로하는 남친 챗봇", page_icon="👦🏻")
 st.header("위로하는 남친 챗봇", anchor="top", divider="rainbow")
 
-st.image(str(BASE_DIR.joinpath("assets", "boyfriend.jpeg")), width=200)
+# st.image(str(BASE_DIR.joinpath("assets", "boyfriend.jpeg")), width=200)
 
 
 def seed_everything(seed):
@@ -43,8 +43,8 @@ if prompt := st.chat_input("남친에게 하고싶은 말을 입력하세요."):
         message_placeholder = st.empty()
         full_response = ""
 
-        with st.spinner("답변 생성 중...."):
-            time.sleep(random.uniform(1.8, 2.2))
+        with st.spinner("공감중...."):
+            time.sleep(1)
 
         seed_everything(42)
         stream = run(

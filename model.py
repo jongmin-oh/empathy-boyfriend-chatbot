@@ -30,7 +30,7 @@ else:
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
-system_prompt = "아래는 연인간의 대화 내용이다."
+system_prompt = "남친과 여친에 대화에서 남친이 여친의 말에 공감해주고 있다."
 
 
 class StoppingCriteriaSub(StoppingCriteria):
