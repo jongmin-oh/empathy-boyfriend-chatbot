@@ -68,7 +68,7 @@ model = AutoModelForCausalLM.from_pretrained(model_id, quantization_config=bnb_c
 ```
 
 ### 학습 방법
-- 코랩에서 학습 : [Colab](https://drive.google.com/file/d/1fcfEpO8qbs46lQushhopoxl0ExUUOwCf/view?usp=sharing)
+- 코랩에서 학습 : [Colab](https://colab.research.google.com/drive/1ifjNievplS0qN1fx0wIJfba1C6qZEEVx?usp=sharing)
   <br> *데이터 셋은 AI 허브의 소유권이 있음으로 Private 입니다.
 
 - Epoch: 5
@@ -78,7 +78,7 @@ model = AutoModelForCausalLM.from_pretrained(model_id, quantization_config=bnb_c
 - Lora target modules: query_key_value
 
 ## 사용 방법
-- 코랩에서 실행 : [Colab](https://drive.google.com/file/d/13trzmQTQaIEw5NuGHecD0xuvuJeSER9w/view?usp=sharing)
+- 코랩에서 실행 : [Colab](https://colab.research.google.com/drive/14Cl73ayNjvt9Oiwpk_Gk1pQeCZm2RpN0?usp=sharing)
 
 - WebDemo 실행
 ```
