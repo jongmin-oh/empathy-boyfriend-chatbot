@@ -8,6 +8,9 @@
 ```
 *그냥 재밌어보여서 제작했습니다.
 
+## 미리보기
+![Scheme](assets/example.gif)
+
 ## 데이터 셋
 
 - 출처 : [AI허브 공감형 대화](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71305)
