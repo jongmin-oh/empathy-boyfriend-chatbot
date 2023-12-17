@@ -44,3 +44,50 @@
 여친: 여유롭게 나오긴 했지만 혹시나 지각할까봐 어찌나 당황했던지. 진짜 소리를 지를 뻔한 정도였어.
 남친: 매일 출근 시간보다 훨씬 이전에 나오는 것도 정말 힘들잖아. 더군다나 버스를 잘못 탔으면 늦을 수도 있었으니 그 순간 마음고생이 심했겠다.</끝>
 ```
+
+## 학습
+
+### Base on Model
+ - 기반 모델 : [EleutherAI/polyglot-ko-5.8b](https://huggingface.co/squarelike/polyglot-ko-medical-5.8b))
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from peft import PeftModel
+
+model_id = "EleutherAI/polyglot-ko-5.8b"
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16
+)
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id, quantization_config=bnb_config, device_map={"":0})
+```
+
+### 학습 방법
+- 코랩에서 학습 : [Colab](https://drive.google.com/file/d/1fcfEpO8qbs46lQushhopoxl0ExUUOwCf/view?usp=sharing)
+*데이터 셋은 AI 허브의 소유권이 있음으로 Private 처리 되어있습니다.
+
+- Epoch: 5
+- learning-rate: 3e-4
+- batch_size: 1
+- Lora r: 8
+- Lora target modules: query_key_value
+
+## 사용 방법
+- 코랩에서 실행 : [Colab](https://drive.google.com/file/d/13trzmQTQaIEw5NuGHecD0xuvuJeSER9w/view?usp=sharing)
+
+- WebDemo 실행
+```
+run.sh
+```
+
+## 요구 사항
+- 8GB 이상 VRAM
+
+## Thanks to
+[jwj7140](https://github.com/jwj7140/ko-medical-chat.git) 님의 저장소 도움을 많이(대부분) 받았습니다.
+```
