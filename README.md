@@ -1,4 +1,5 @@
 # 위로하는 남친 챗봇(empathy-boyfriend-chatbot)
+Polyglot-ko-5.8B 모델을 기반으로 AI허브에 공개된 연인들사이의 공감대화로 QLoRA 파인튜닝한 sLLM 챗봇 모델
 
 ## 배경
 ```
