@@ -11,7 +11,7 @@
 ## 데이터 셋
 
 - 출처 : [AI허브 공감형 대화](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71305)
-- 활용 데이터: 연인
+- 활용 데이터: 연인 <br>
 *부부, 친구, 연인 등 많은 상황에 데이터가 존재하지만 연인의 데이터만 사용하였습니다.
 
 ## 데이터 전처리
