@@ -14,8 +14,8 @@ sLLM 모델을 기반으로 AI허브에 공개된 연인들사이의 공감대�
 ***
 
 ## Update Logs
-2023.12.25: [🤗j5ng/polyglot-ko-empathy-chat-5.8b](https://huggingface.co/j5ng/polyglot-ko-empathy-chat-5.8b) 모델 공개
-2024.08.25: [🤗j5ng/EEVE-korean-empathy-chat-10.8B](https://huggingface.co/j5ng/EEVE-korean-empathy-chat-10.8B) 모델 공개
+- 2023.12.25: [🤗j5ng/polyglot-ko-empathy-chat-5.8b](https://huggingface.co/j5ng/polyglot-ko-empathy-chat-5.8b) 모델 공개
+- 2024.08.25: [🤗j5ng/EEVE-korean-empathy-chat-10.8B](https://huggingface.co/j5ng/EEVE-korean-empathy-chat-10.8B) 모델 공개
 
 ## 데이터 셋
 - 출처 : [AI허브 공감형 대화](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71305)
