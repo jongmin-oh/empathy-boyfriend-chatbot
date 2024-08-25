@@ -1,5 +1,5 @@
 # 공감하는 남친 챗봇(empathy-boyfriend-chatbot)
-Polyglot-ko-5.8B 모델을 기반으로 AI허브에 공개된 연인들사이의 공감대화로 QLoRA 파인튜닝한 sLLM 챗봇 모델
+sLLM 모델을 기반으로 AI허브에 공개된 연인들사이의 공감대화로 QLoRA 파인튜닝한 챗봇 모델
 
 ## 배경
 ```
@@ -54,32 +54,15 @@ Polyglot-ko-5.8B 모델을 기반으로 AI허브에 공개된 연인들사이의
 ### Base on Model
  - 기반 모델 : [🤗yanolja/EEVE-Korean-10.8B-v1.0](https://huggingface.co/yanolja/EEVE-Korean-10.8B-v1.0)
 
-```python
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-from peft import PeftModel
-
-model_id = "EleutherAI/polyglot-ko-5.8b"
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_use_double_quant=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=torch.bfloat16
-)
-
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForCausalLM.from_pretrained(model_id, quantization_config=bnb_config, device_map={"":0})
-```
-
 ### 학습 방법
 - 코랩에서 학습 : [Colab](https://colab.research.google.com/drive/1ifjNievplS0qN1fx0wIJfba1C6qZEEVx?usp=sharing)
   <br> *데이터 셋은 AI 허브의 소유권이 있음으로 Private 입니다.
 
-- Epoch: 16
-- learning-rate: 3e-4
+- Epoch: 2
+- learning-rate: 2e-4
 - batch_size: 1
-- Lora r: 8
-- Lora target modules: query_key_value
+- Lora r: 16
+- Lora alpha: 32
 
 ![Scheme](assets/train_loss.png)
 
@@ -92,7 +75,7 @@ run.sh
 ```
 
 ## 요구 사항
-- 8GB 이상 VRAM
+- 16GB 이상 VRAM
 
 ## Thanks to
 [jwj7140](https://github.com/jwj7140/ko-medical-chat.git) 님의 저장소 도움을 많이(대부분) 받았습니다.
