@@ -14,13 +14,10 @@ Polyglot-ko-5.8B 모델을 기반으로 AI허브에 공개된 연인들사이의
 ***
 
 ## Update Logs
-
-2024.08.25: 기반 모델을 [🤗EleutherAI/polyglot-ko-5.8b](https://huggingface.co/squarelike/polyglot-ko-medical-5.8b) 에서 [🤗yanolja/EEVE-Korean-10.8B-v1.0](https://huggingface.co/yanolja/EEVE-Korean-10.8B-v1.0)로 변경하여 파인튜닝 진행
+2023.12.25: [🤗j5ng/polyglot-ko-empathy-chat-5.8b](https://huggingface.co/j5ng/polyglot-ko-empathy-chat-5.8b) 모델 공개
 2024.08.25: [🤗j5ng/EEVE-korean-empathy-chat-10.8B](https://huggingface.co/j5ng/EEVE-korean-empathy-chat-10.8B) 모델 공개
 
-https://huggingface.co/yanolja/EEVE-Korean-10.8B-v1.0
 ## 데이터 셋
-
 - 출처 : [AI허브 공감형 대화](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71305)
 - 활용 데이터: 연인 <br>
 *부부, 친구, 연인 등 많은 상황에 데이터가 존재하지만 연인의 데이터만 사용하였습니다.
