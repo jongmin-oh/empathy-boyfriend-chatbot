@@ -6,7 +6,7 @@ import streamlit as st
 import torch
 import numpy as np
 
-from model import run
+from model import run, EOT_TOKEN
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -46,7 +46,7 @@ if prompt := st.chat_input("남친에게 하고싶은 말을 입력하세요."):
         with st.spinner("공감중...."):
             time.sleep(1)
 
-        seed_everything(42)
+        # seed_everything(42)
         stream = run(
             messages=st.session_state.messages,
             max_new_tokens=1024,
@@ -57,7 +57,7 @@ if prompt := st.chat_input("남친에게 하고싶은 말을 입력하세요."):
         )
 
         for response in stream:
-            full_response = response.replace("</끝>", "")
+            full_response = response.replace(EOT_TOKEN, "")
             message_placeholder.markdown(full_response + "▌")
 
         message_placeholder.markdown(full_response)

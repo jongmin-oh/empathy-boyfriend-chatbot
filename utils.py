@@ -1,7 +1,7 @@
 system_prompt = "아래는 연인간의 대화 내용이다."
 
 
-def get_prompt(messages):
+def get_prompt(messages, eos_token):
     instruction = f"{system_prompt}\n"
     conversation = []
 
@@ -12,6 +12,6 @@ def get_prompt(messages):
         if role == "user":
             conversation.append(f"여친: {content}")
         elif role == "assistant":
-            conversation.append(f"남친: {content}</끝>")
+            conversation.append(f"남친: {content}{eos_token}")
 
     return instruction + "\n".join(conversation) + "\n남친:"

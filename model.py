@@ -13,7 +13,7 @@ from transformers import (
 
 from utils import get_prompt
 
-model_id = "j5ng/polyglot-ko-empathy-chat-5.8b"
+model_id = "j5ng/EEVE-korean-empathy-chat-10.8B"
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_use_double_quant=True,
@@ -29,6 +29,7 @@ else:
     model = None
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
+EOT_TOKEN = tokenizer.eos_token
 
 system_prompt = "남친과 여친의 대화에서 남친이 여친의 말에 공감해주고 있다."
 
@@ -36,13 +37,16 @@ system_prompt = "남친과 여친의 대화에서 남친이 여친의 말에 공
 class StoppingCriteriaSub(StoppingCriteria):
     def __init__(self, stops=[], encounters=1):
         super().__init__()
-        self.stops = [stop for stop in stops]
+        self.stops = stops
+        self.encounters = encounters
+        self.counter = {tuple(stop.tolist()): 0 for stop in stops}
 
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor):
         for stop in self.stops:
-            if torch.all((stop == input_ids[0][-len(stop) :])).item():
-                return True
-
+            if torch.equal(input_ids[0, -len(stop):], stop):
+                self.counter[tuple(stop.tolist())] += 1
+                if self.counter[tuple(stop.tolist())] >= self.encounters:
+                    return True
         return False
 
 
@@ -54,7 +58,7 @@ def run(
     top_k: int = 50,
     repetition_penalty: float = 1.2,
 ) -> Iterator[str]:
-    prompt = get_prompt(messages)
+    prompt = get_prompt(messages, eos_token=EOT_TOKEN)
     inputs = tokenizer(
         [prompt],
         return_tensors="pt",
@@ -62,28 +66,25 @@ def run(
         return_token_type_ids=False,
     ).to("cuda")
 
-    stop_words = ["</끝>"]
-    stop_words_ids = [
-        tokenizer(stop_word, return_tensors="pt").to("cuda")["input_ids"].squeeze()
-        for stop_word in stop_words
-    ]
-    stopping_criteria = StoppingCriteriaList(
-        [StoppingCriteriaSub(stops=stop_words_ids)]
-    )
+    stop_words = [EOT_TOKEN]
+    stop_words_ids = [tokenizer.encode(stop_word, add_special_tokens=False) for stop_word in stop_words]
+    stop_words_ids = [torch.tensor(ids, device='cuda:0') for ids in stop_words_ids]
+    stopping_criteria = StoppingCriteriaList([StoppingCriteriaSub(stops=stop_words_ids)])
 
     streamer = TextIteratorStreamer(
         tokenizer, timeout=10.0, skip_prompt=True, skip_special_tokens=True
     )
     generate_kwargs = dict(
-        inputs,
+        input_ids=inputs["input_ids"],
         streamer=streamer,
-        max_new_tokens=max_new_tokens,
+        max_length=max_new_tokens,
+        do_sample=True,
         top_p=top_p,
         top_k=top_k,
         temperature=temperature,
         repetition_penalty=repetition_penalty,
         num_beams=1,
-        pad_token_id=tokenizer.pad_token_id,
+        pad_token_id=tokenizer.eos_token_id,
         stopping_criteria=stopping_criteria,
     )
     t = Thread(target=model.generate, kwargs=generate_kwargs)
