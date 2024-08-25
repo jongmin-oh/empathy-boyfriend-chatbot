@@ -13,6 +13,11 @@ Polyglot-ko-5.8B 모델을 기반으로 AI허브에 공개된 연인들사이의
 ![Scheme](assets/example.gif)
 ***
 
+## Update Logs
+2024.08.25: 기반 모델을 [🤗EleutherAI/polyglot-ko-5.8b](https://huggingface.co/squarelike/polyglot-ko-medical-5.8b) 에서 [🤗yanolja/EEVE-Korean-10.8B-v1.0](https://huggingface.co/yanolja/EEVE-Korean-10.8B-v1.0)로 변경하여 파인튜닝 진행
+2024.08.25: [🤗j5ng/EEVE-korean-empathy-chat-10.8B](https://huggingface.co/j5ng/EEVE-korean-empathy-chat-10.8B) 모델 공개
+
+https://huggingface.co/yanolja/EEVE-Korean-10.8B-v1.0
 ## 데이터 셋
 
 - 출처 : [AI허브 공감형 대화](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71305)
@@ -49,7 +54,7 @@ Polyglot-ko-5.8B 모델을 기반으로 AI허브에 공개된 연인들사이의
 ## 학습
 
 ### Base on Model
- - 기반 모델 : [EleutherAI/polyglot-ko-5.8b](https://huggingface.co/squarelike/polyglot-ko-medical-5.8b)
+ - 기반 모델 : [🤗yanolja/EEVE-Korean-10.8B-v1.0](https://huggingface.co/yanolja/EEVE-Korean-10.8B-v1.0)
 
 ```python
 import torch
