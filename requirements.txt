@@ -1,9 +1,8 @@
-accelerate==0.21.0
+accelerate==0.33.0
 bitsandbytes==0.40.2
-gradio==3.37.0
 protobuf==3.20.3
 scipy==1.11.1
 sentencepiece==0.1.99
-torch==2.0.1
-transformers==4.31.0
+torch==2.2.0
+transformers==4.43.3
 streamlit==1.29.0
