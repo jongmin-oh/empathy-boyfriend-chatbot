@@ -61,7 +61,6 @@ sLLM 모델을 기반으로 AI허브에 공개된 연인들사이의 공감대�
 
 - Epoch: 2
 - learning-rate: 2e-4
-- batch_size: 1
 - Lora r: 16
 - Lora alpha: 32
 
